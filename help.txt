@@ -1,0 +1,2 @@
+https://github.com/sookcha/every2cal.git
+에브리타임 시간표를 읽어 엑셀 파일이나 xml, ics 파일로 변환하는 python 프로그램입니다.
