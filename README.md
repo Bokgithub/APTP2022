@@ -33,7 +33,7 @@
 에브리타임에서 크롤링할 때 차단당하지 않는 것 (에브리타임은 크롤링을 금지하고 있음)
 
 ## 7. 구현에 필요한 라이브러리나 기술
-{pygame, sys, socket, selenium, chromedriver-autoinstaller, os, ...}
+{pygame, sys, socket, selenium, chromedriver-autoinstaller, os, PyQt5, ...}
 
 ## 8. **분업 계획**
 
