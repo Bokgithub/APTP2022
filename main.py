@@ -15,27 +15,32 @@ def time(nodepoint): #노드에서 다음 노드로 갈 때의 거리와 높이�
 def findmin(node): #현재 노드에서 다음 노드로 갈 때, 다음 노드들 중 걸리는 시간 중 최소 시간을 구하는 함수, 반환값: node이름
     mintime=-1 #mintime과 idx 초기화
     next_node=[]
+    min_name=''
     for j in node: #현재에서 갈 수 있는 다음 노드들이 무엇인지 리스트로 수합
         next_node.append(j[0])
 
     for i in next_node: #nodes=[[a,100],[b,20],[c,300]]
 
-        if mintime==-1:
+        if do[i][1]==-2:
+            continue
+
+        elif mintime==-1:
             min_name=i
             mintime = do[i][1]
 
-        else:
 
+        else:
             if do[i][1]<mintime or do[i][1]!=-1: #갈 수 있는 노드들 중에서, 시간이 가장 짧은 노드 발견
                 mintime=do[i][1]
                 min_name=i
 
     return min_name
 
-def search(stops, end, way, tim=0): #전체 소요 시간을 구하는 함수
+def search(stops, end, way, tim): #전체 소요 시간을 구하는 함수
 
 
     if stops==end:
+        way.append(stops)
         return way, int(tim)
 
     for i in do[stops][2]: #time을 통해 시간으로 모두 변환/ i는 [a,100]형식
@@ -45,14 +50,31 @@ def search(stops, end, way, tim=0): #전체 소요 시간을 구하는 함수
         if do[j[0]][1]==-1:
             do[j[0]][1]=j[1]
 
-    if do[stops][1]>tim or do[stops][1]==-1: #갈 수 있는 다음 노드들(do[stops][2])을 리스트에서 찾아본 후, 걸리는 시간이 tim 보다 길면, 시간을 지금의 시간으로 갱신 후, 지금의 루트를 리스트에 추가
+    if do[stops][1]>tim and do[stops][1]!=-2: #갈 수 있는 다음 노드들(do[stops][2])을 리스트에서 찾아본 후, 걸리는 시간이 tim 보다 길면, 시간을 지금의 시간으로 갱신 후, 지금의 루트를 리스트에 추가
         do[stops][1]=tim
-        way.append(stops)
 
-    next=findmin(do[stops][2])
-    print("next= ", next)
-    search(next,end,way,tim+do[next][1])
+
+
+
+    next= findmin(do[stops][2]) #n
+    print(len(way)-1)
+
+    if next=='':
+        do[way[-1]][1] =-2
+        way.pop(-1)
+        search(way[-1], end, way, do[way[-1]][1])
+    else:
+
+        print('next= ', next)
+        do[next][1] = -2
+
+        way.append(stops)
+        search(next,end,way,tim+do[next][1])
+    return way, tim
 
 way=[]
-print(search('DormE','DormF',way))
+tim=0
+way, time = search('DormE','DormF',way,tim)
+print('way = ',way)
+print('time=', time)
 
