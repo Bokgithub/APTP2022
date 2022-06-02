@@ -1,80 +1,85 @@
 import math
+import heapq
+from campus.songdo import NodeSongdo as Song_
+from campus.sinchon import NodeSinchon as Sin_
 
-from campus.songdo import NodeSongdo as do
-from campus.sinchon import NodeSinchon as ch
+cons1 = 1.1 #기울기에 따라 부가적으로 걸리는 시간을 고려하여 곱해주는 상수
+cons2 = 0.9
+cons3= 0.015 #상대적 거리인 length를 실제 거리로 바꿔주는 상수
 
-cons1 = 30 #상대적 거리인 length를 실제 거리로 바꿔주는 상수
-cons2 = 1.5 #기울기에 따라 부가적으로 걸리는 시간을 고려하여 곱해주는 상수
-complete=[]
 
-def time(nodepoint): #노드에서 다음 노드로 갈 때의 거리와 높이를 시간으로 변환해주는 함수
-    time=math.sqrt(pow(nodepoint[1],2)+pow((nodepoint[2]+1)*cons1,2))*(cons2*(nodepoint[2]+1))
-    nodepoint[1]=time
-    nodepoint[2]=0
+def Time(do): #노드에서 다음 노드로 갈 때의 거리와 높이를 시간으로 변환해주는 함수
+    for key, value in nodes.items():
+        for next in value[2]:
+            if next[2]>0:
+                time=(next[1] * cons3) * next[2] * cons1
+            elif next[2]<0:
+                time=(next[1] * cons3) * (- next[2]) * cons2
+            else:
+                time=(next[1] * cons3)
+            next[1]=time
+            next[2]=0
+            '''time = math.sqrt(pow(next[1]* 0.015, 2) + pow((next[2] + 1) * cons1, 2)) * (cons2 * (next[2] + 1))
+            next[1]=time
+            next[2]=0
 
-def findmin(node): #현재 노드에서 다음 노드로 갈 때, 다음 노드들 중 걸리는 시간 중 최소 시간을 구하는 함수, 반환값: node이름
-    mintime=-1 #mintime과 idx 초기화
-    next_node=[]
+def FindMin(node): #현재 노드에서 다음 노드로 갈 때, 다음 노드들 중 걸리는 시간 중 최소 시간을 구하는 함수, 반환값: node이름
+    mintime=math.inf  #mintime과 idx 초기화
     min_name=''
-    for j in node: #현재에서 갈 수 있는 다음 노드들이 무엇인지 리스트로 수합
-        next_node.append(j[0])
+    for key, value in do: #nodes=[[a,100],[b,20],[c,300]]
+        if value[1] <= mintime:
+            min_name = key
+            mintime = value[1]
+    return min_name, mintime
+'''
 
-    for i in next_node: #nodes=[[a,100],[b,20],[c,300]]
-
-        if do[i][1]==-2:
-            continue
-
-        elif mintime==-1:
-            min_name=i
-            mintime = do[i][1]
+def SearchPathTime(stops, end, tim,done=[], queue=[], way={}): #전체 소요 시간을 구하는 함수
 
 
-        else:
-            if do[i][1]<mintime or do[i][1]!=-1: #갈 수 있는 노드들 중에서, 시간이 가장 짧은 노드 발견
-                mintime=do[i][1]
-                min_name=i
+    if stops==end: #도착지라면 지금까지의 거리와 시간을 반환함.
+        dir= way[stops]
+        return dir, tim
 
-    return min_name
+    for next in nodes[stops][2]: #갈 수 있는 다음 노드들(do[stops][2])에 대해 현재 경로를 통해 가는 시간이 더 짧다면, 시간과 경로 갱신
+        tim += next[1]
+        if tim < nodes[next[0]][1]:
+            nodes[next[0]][1] = tim
 
-def search(stops, end, way, tim): #전체 소요 시간을 구하는 함수
+            if stops in way: #way라는 딕셔너리에, 가장 짧은 경로를 갱신함. 이때의 경로는 현재의 stops까지 오는 경로에 stops를 추가한 것임.
+                dir=way[stops]
+                dir.append(stops)
+                way[next[0]] = dir
 
-
-    if stops==end:
-        way.append(stops)
-        return way, int(tim)
-
-    for i in do[stops][2]: #time을 통해 시간으로 모두 변환/ i는 [a,100]형식
-        time(i)
-
-    for j in do[stops][2]: #갈 수 있는 다음 노드들(do[stops][2])을 전체 딕셔너리에서 찾아본 후, 걸리는 시간이 초기값 -1이면 지금 값으로 갱신
-        if do[j[0]][1]==-1:
-            do[j[0]][1]=j[1]
-
-    if do[stops][1]>tim and do[stops][1]!=-2: #갈 수 있는 다음 노드들(do[stops][2])을 리스트에서 찾아본 후, 걸리는 시간이 tim 보다 길면, 시간을 지금의 시간으로 갱신 후, 지금의 루트를 리스트에 추가
-        do[stops][1]=tim
+            else:
+                way[next[0]]=[stops]
 
 
+            if (next[0] in done) == False:
+                heapq.heappush(queue, [tim, next[0]]) #힙을 이용하여 다음 역들을 넣어 다음 탐색 경로를 만듦.
+                done.append(next[0]) #done은 이미 지나온 경로를 체크하는 함수
+
+    next=heapq.heappop(queue) #heapq.pop을 통해 남은 경로들 중 가장 짧은 시간을 탐색함.
+    SearchPathTime(next[1], end,  next[0],done, queue, way)
 
 
-    next= findmin(do[stops][2]) #n
-    print(len(way)-1)
-
-    if next=='':
-        do[way[-1]][1] =-2
-        way.pop(-1)
-        search(way[-1], end, way, do[way[-1]][1])
-    else:
-
-        print('next= ', next)
-        do[next][1] = -2
-
-        way.append(stops)
-        search(next,end,way,tim+do[next][1])
     return way, tim
+nodes=Song_
+Map=int(input("활용하고자 하는 지도를 선택해주세요"))
+if Map==1:
+    nodes=Song_
+elif Map==2:
+    nodes=Sin_
+else:
+ print("잘못 입력하셨습니다")
 
-way=[]
+way={}
 tim=0
-way, time = search('DormE','DormF',way,tim)
+done=[]
+queue=[]
+
+
+Time(nodes)
+way, time= SearchPathTime('Yplaza', 'YICfield',  tim,done, queue, way)
 print('way = ',way)
 print('time=', time)
 

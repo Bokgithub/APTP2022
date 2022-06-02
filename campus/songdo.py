@@ -1,14 +1,16 @@
 # Node 배열 구조 || {'노드 이름':[장소명,시간,[이웃 노드1],[이웃 노드2],[이웃 노드3]]}
 # 이웃 노드 값 구조 || ['이웃 노드 이름',거리(m),고도차(m)]
+import math
+
 NodeSongdo = {
   'gatea': [
     '연돌(임시정문)',
-    -1,[
+    math.inf,[
       ['nodea',116,2]
   ]],
   'gateb':[
     '서문(트스 방향)',
-    -1,
+    math.inf,
     [
       
       ['DormC',38,0],
@@ -19,7 +21,7 @@ NodeSongdo = {
   ],
   'UML':[
     '언더우드기념도서관(1층 출입구)',
-    -1,
+    math.inf,
     [
       
       ['nodee',18,0]
@@ -28,7 +30,7 @@ NodeSongdo = {
   ],
   'Yplaza':[
     '언더우드기념도서관(지하1층), Y-plaza',
-    -1,
+    math.inf,
     [
       
       ['nodem',57,0],
@@ -39,7 +41,7 @@ NodeSongdo = {
   ],
   'YICfield':[
     '운동장',
-    -1,
+    math.inf,
     [
       
       ['nodea',237,2],
@@ -49,7 +51,7 @@ NodeSongdo = {
   ],
   'LiberA':[
     '자유관A',
-    -1,
+    math.inf,
     [ 
       
       ['nodel',48,0],
@@ -59,7 +61,7 @@ NodeSongdo = {
   ],
   'LiberB':[
     '자유관B',
-    -1,
+    math.inf,
     [ 
       
       ['nodea',77,0],
@@ -69,7 +71,7 @@ NodeSongdo = {
   ],
   'Futsal':[
     '풋살장',
-    -1,
+    math.inf,
     [ 
        
       ['DormB',49,0],
@@ -80,7 +82,7 @@ NodeSongdo = {
   ],
   'WisA':[
     '지혜관A',
-    -1,
+    math.inf,
     [ 
       
       ['Woori',36,0],
@@ -90,7 +92,7 @@ NodeSongdo = {
   ],
   'WisB':[
     '지혜관B',
-    -1,
+    math.inf,
     [ 
        
       ['nodeg',28,0]
@@ -99,7 +101,7 @@ NodeSongdo = {
   ],
   'WisC':[
     '지혜관C',
-    -1,
+    math.inf,
     [ 
        
       ['DormD',160,0]
@@ -108,7 +110,7 @@ NodeSongdo = {
   ],
   'Woori':[
     '우리은행',
-    -1,
+    math.inf,
     [ 
       
       ['WisA',36,0],
@@ -119,7 +121,7 @@ NodeSongdo = {
   ],
   'DormA':[
     '송도학사A',
-    -1,
+    math.inf,
     [ 
        
       ['Woori',53,0],
@@ -129,7 +131,7 @@ NodeSongdo = {
   ],
   'DormB':[
     '송도학사B',
-    -1,
+    math.inf,
     [ 
        
       ['Futsal',49,0],
@@ -141,7 +143,7 @@ NodeSongdo = {
   ],
   'DormC':[
     '송도학사C',
-    -1,
+    math.inf,
     [
        
       ['gateb',38,0],
@@ -152,7 +154,7 @@ NodeSongdo = {
   ],
   'DormD':[
     '송도학사D',
-    -1,
+    math.inf,
     [ 
       ['WisC',160,0],
       ['DormG',90,0],
@@ -162,7 +164,7 @@ NodeSongdo = {
   ],
   'DormE':[
     '송도학사E',
-    -1,
+    math.inf,
     [ 
       ['DormF',43,0],
       ['nodec',33,0]
@@ -170,21 +172,21 @@ NodeSongdo = {
   ],
   'DormF':[
     '송도학사F',
-    -1,
+    math.inf,
     [ 
       ['DormE',43,0]
     ]
   ],
   'DormG':[
     '송도학사G',
-    -1,
+    math.inf,
     [ 
       ['DormF',90,0]
     ]
   ],
   'VeriA':[
     '진리관A',
-    -1,
+    math.inf,
     [ 
       ['nodem',19,0],
       ['nodes',58,0]
@@ -192,7 +194,7 @@ NodeSongdo = {
   ],
   'VeriB':[
     '진리관B',
-    -1,
+    math.inf,
     [ 
       ['noded',50,0],
       ['nodem',50,0]
@@ -200,7 +202,7 @@ NodeSongdo = {
   ],
   'VeriC':[
     '진리관C',
-    -1,
+    math.inf,
     [ 
       ['nodef',27,0],
       ['noden',70,0]
@@ -208,7 +210,7 @@ NodeSongdo = {
   ],
   'VeriD':[
     '진리관D',
-    -1,
+    math.inf,
     [ 
       ['SLBigen',45,0],
       ['nodef',45,0]
@@ -216,14 +218,14 @@ NodeSongdo = {
   ],
   'SLBigen':[
     '에스엘바이젠의학연구소',
-    -1,
+    math.inf,
     [
       ['VeriD',45,0]
     ]
   ],
   'Vision':[
     '종합관',
-    -1,
+    math.inf,
     [ 
       ['noden',17,0],
       ['nodes',54,0]
@@ -231,7 +233,7 @@ NodeSongdo = {
   ],
   'Chapl':[
     '크리스틴채플',
-    -1,
+    math.inf,
     [ 
       ['nodei',31,0],
       ['nodeo',27,0]
@@ -239,35 +241,35 @@ NodeSongdo = {
   ],
   'IMCH':[
     '국제캠퍼스기념관',
-    -1,
+    math.inf,
     [ 
       ['gateb',44,0]
     ]
   ],
   'Mntnc':[
     '파워플랜트',
-    -1,
+    math.inf,
     [ 
       ['nodei',36,0]
     ]
   ],
   'Ghome':[
     '저에너지친환경실험주택',
-    -1,
+    math.inf,
     [
       ['nodeh',78,0]
     ]
   ],
   'posco':[
     '포스코그린빌딩',
-    -1,
+    math.inf,
     [ 
       ['nodeg',284,0]
     ]
   ],
   'nodea':[
     'a',
-    -1,
+    math.inf,
     [ 
       ['gatea',116,-2],
       ['YICfield',237,-2],
@@ -277,7 +279,7 @@ NodeSongdo = {
   ],
   'nodeb':[
     'b',
-    -1,
+    math.inf,
     [
       ['YICfield',99,0],
       ['nodec',67,0],
@@ -286,7 +288,7 @@ NodeSongdo = {
   ],
   'nodec':[
     'c',
-    -1,
+    math.inf,
     [ 
       ['nodeb',67,0],
       ['DormE',33,0],
@@ -296,7 +298,7 @@ NodeSongdo = {
   ],
   'noded':[
     'd',
-    -1,
+    math.inf,
     [ 
       ['VeriB',50,0],
       ['nodee',65,0]
@@ -304,7 +306,7 @@ NodeSongdo = {
   ],
   'nodee':[
     'e',
-    -1,
+    math.inf,
     [ 
       ['UML',18,0],
       ['noded',65,0],
@@ -313,7 +315,7 @@ NodeSongdo = {
   ],
   'nodef':[
     'f',
-    -1,
+    math.inf,
     [  
       ['VeriC',27,0],
       ['nodee',52,0],
@@ -323,7 +325,7 @@ NodeSongdo = {
   ],
   'nodeg':[
     'g',
-    -1,
+    math.inf,
     [ 
       ['nodeo',35,0],
       ['nodef',76,2],
@@ -334,7 +336,7 @@ NodeSongdo = {
   ],
   'nodeh':[
     'h',
-    -1,
+    math.inf,
     [  
       ['nodei',26,0],
       ['nodeg',59,0],
@@ -343,7 +345,7 @@ NodeSongdo = {
   ],
   'nodei':[
     'i',
-    -1,
+    math.inf,
     [ 
       ['nodej',153,0],
       ['Chapl',31,0],
@@ -353,7 +355,7 @@ NodeSongdo = {
   ],
   'nodej':[
     'j',
-    -1,
+    math.inf,
     [ 
       ['DormB',67,0],
       ['nodep',63,0],
@@ -364,7 +366,7 @@ NodeSongdo = {
   ],
   'nodek':[
     'k',
-    -1,
+    math.inf,
     [ 
       ['nodel',119,2],
       ['Futsal',31,0],
@@ -373,7 +375,7 @@ NodeSongdo = {
   ],
   'nodel':[
     'l',
-    -1,
+    math.inf,
     [  
       ['LiberB',29,0],
       ['LiberA',48,0],
@@ -382,7 +384,7 @@ NodeSongdo = {
   ],
   'nodem':[
     'm',
-    -1,
+    math.inf,
     [  
       ['VeriA',19,0],
       ['nodec',68,-2],
@@ -392,7 +394,7 @@ NodeSongdo = {
   ],
   'noden':[
     'n',
-    -1,
+    math.inf,
     [  
       ['Vision',17,0],
       ['Yplaza',56,0],
@@ -402,7 +404,7 @@ NodeSongdo = {
   ],
   'nodeo':[
     'o',
-    -1,
+    math.inf,
     [  
       ['nodep',137,0],
       ['nodeg',35,0],
@@ -411,7 +413,7 @@ NodeSongdo = {
   ],
   'nodep':[
     'p',
-    -1,
+    math.inf,
     [  
       ['Futsal',76,0],
       ['nodeq',32,0],
@@ -421,7 +423,7 @@ NodeSongdo = {
   ],
   'nodeq':[
     'q',
-    -1,
+    math.inf,
     [  
       ['noder',88,2],
       ['noden',123,2],
@@ -430,7 +432,7 @@ NodeSongdo = {
   ],
   'noder':[
     'r',
-    -1,
+    math.inf,
     [  
       ['LiberA',40,0],
       ['nodeb',150,-2],
@@ -440,7 +442,7 @@ NodeSongdo = {
   ],
   'nodes':[
     's',
-    -1,
+    math.inf,
     [  
       ['noder',58,0],
       ['VeriA',58,0],
