@@ -41,7 +41,18 @@ def SearchPathTime(stops, end, tim,done=[], queue=[], way={}): #전체 소요 �
         return dir, tim
 
     for next in nodes[stops][2]: #갈 수 있는 다음 노드들(do[stops][2])에 대해 현재 경로를 통해 가는 시간이 더 짧다면, 시간과 경로 갱신
-        tim += next[1]
+        height=next[2]
+        if height==0:
+            tim_=next[1]
+        elif height>0:
+            tim_=next[1]+next[2]*cons1
+        elif height< 0:
+            tim_=next[1]+next[2]*cons2
+
+        tim+=tim_
+
+
+
         if tim < nodes[next[0]][1]:
             nodes[next[0]][1] = tim
 
@@ -62,7 +73,7 @@ def SearchPathTime(stops, end, tim,done=[], queue=[], way={}): #전체 소요 �
     SearchPathTime(next[1], end,  next[0],done, queue, way)
 
 
-    return way, tim
+    return way[end], tim
 
 
 way={}
@@ -76,7 +87,7 @@ queue=[]
 #입출력
 print("사용할 위치를 고르세요.")
 print("1 : 신촌캠퍼스  2 : 국제캠퍼스")
-Map = input("숫자를 입력하세요 : ")
+Map =int( input("숫자를 입력하세요 : "))
 
 if Map==1:
     nodes=Song_
@@ -85,10 +96,9 @@ elif Map==2:
 else:
  print("잘못 입력하셨습니다")
 
-Time(nodes)
 way, time= SearchPathTime('Yplaza', 'YICfield',  tim,done, queue, way)
 print('way = ',way)
-print('time=', time)
+
 
 # 개인별 보행 속력 입력 (성인의 평균 보행 속력=4.8km/h)
 velocity=float(input("본인의 보행 속력를 입력하세요[km/h]: "))
