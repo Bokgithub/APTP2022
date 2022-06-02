@@ -37,32 +37,18 @@
     </property>
     <layout class="QGridLayout" name="gridLayout">
      <item row="0" column="0">
-      <widget class="QLineEdit" name="lineEdit">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
+      <widget class="QLabel" name="label">
        <property name="font">
         <font>
-         <family>AppleSDGothicNeoB00</family>
+         <family>Pretendard SemiBold</family>
+         <pointsize>15</pointsize>
         </font>
        </property>
        <property name="text">
         <string>제 호의를 무시하다니, 정말 못됐군요.</string>
        </property>
-       <property name="frame">
-        <bool>false</bool>
-       </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
-       </property>
-       <property name="dragEnabled">
-        <bool>false</bool>
-       </property>
-       <property name="readOnly">
-        <bool>true</bool>
        </property>
       </widget>
      </item>
