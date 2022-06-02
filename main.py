@@ -63,14 +63,7 @@ def SearchPathTime(stops, end, tim,done=[], queue=[], way={}): #전체 소요 �
 
 
     return way, tim
-nodes=Song_
-Map=int(input("활용하고자 하는 지도를 선택해주세요"))
-if Map==1:
-    nodes=Song_
-elif Map==2:
-    nodes=Sin_
-else:
- print("잘못 입력하셨습니다")
+
 
 way={}
 tim=0
@@ -78,8 +71,38 @@ done=[]
 queue=[]
 
 
+
+
+#입출력
+print("사용할 위치를 고르세요.")
+print("1 : 신촌캠퍼스  2 : 국제캠퍼스")
+Map = input("숫자를 입력하세요 : ")
+
+if Map==1:
+    nodes=Song_
+elif Map==2:
+    nodes=Sin_
+else:
+ print("잘못 입력하셨습니다")
+
 Time(nodes)
 way, time= SearchPathTime('Yplaza', 'YICfield',  tim,done, queue, way)
 print('way = ',way)
 print('time=', time)
 
+# 개인별 보행 속력 입력 (성인의 평균 보행 속력=4.8km/h)
+velocity=float(input("본인의 보행 속력를 입력하세요[km/h]: "))
+
+# 최단경로의 가중치의 합을 기존의 코드를 통해 입력 받는다 = time
+# 비례 상수 = d (sum*d= 총 이동거리[km])
+
+d=0.001
+
+# 전체 소요 시간 = T[h]
+T=time*d/velocity
+
+if(T <= 1/6):
+    print("%.2f분 소요, 쉬는 시간 내에 도착 가능합니다." %(T*60))
+else:
+    recommend_velocity=sum*d/(1/6)
+    print("평균 %.2fkm/h의 속력으로 달려야만 쉬는 시간 내에 도착 가능합니다." %(recommend_velocity))
